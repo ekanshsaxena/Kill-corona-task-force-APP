@@ -27,8 +27,8 @@ dependencies:
   shared_preferences: any
   toast: ^0.1.5
   image_picker: ^0.6.7+4
-  font_awesome_flutter: ^8.8.1
   dropdown_formfield: ^0.1.2
+  dio: any
 
 
   # The following adds the Cupertino Icons font to your application.

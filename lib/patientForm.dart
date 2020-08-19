@@ -3,10 +3,9 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:chitra_herbals/main.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:dropdown_formfield/dropdown_formfield.dart';
 import 'package:http/http.dart' as http;
+import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PatientForm extends StatefulWidget {
@@ -17,6 +16,8 @@ class PatientForm extends StatefulWidget {
 }
 
 class PatientFormState extends State<PatientForm> {
+  // ignore: slash_for_doc_comments
+  /*********************************************************SET CONTROLLERS*********************************************************/
   TextEditingController fname = new TextEditingController();
   TextEditingController lname = new TextEditingController();
   TextEditingController gender = new TextEditingController(text: "Male");
@@ -29,10 +30,12 @@ class PatientFormState extends State<PatientForm> {
   TextEditingController place =
       new TextEditingController(text: "Home Quarantine");
   TextEditingController address = new TextEditingController();
-  TextEditingController other = new TextEditingController(text: "none");
-
+  TextEditingController other = new TextEditingController();
+  // ignore: slash_for_doc_comments
+  /*********************************************************ADD DATA FUNCTION*********************************************************/
   addData() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    // ignore: non_constant_identifier_names
     var user_id = sharedPreferences.get('token');
     print(user_id);
     var url = "http://chitraherbals.in/api/create/patient";
@@ -42,6 +45,8 @@ class PatientFormState extends State<PatientForm> {
       "lname": lname.text,
       "gender": gender.text,
       "phone": mobile.text,
+      "aadhar": "",
+      "report": "",
       "date_positive": date.text,
       "quarantine_place": place.text,
       "age": age.text,
@@ -51,12 +56,14 @@ class PatientFormState extends State<PatientForm> {
       "other": other.text,
       "dynamiteoil": dynamite.text,
     };
-    //print(data);
+    // ignore: avoid_init_to_null
     var jsonResponse = null;
     var response = await http.post(
-      Uri.encodeFull(url),
+      /* Uri.encodeFull(url),
       body: jsonEncode(data),
-      headers: {'Content-Type': 'application/json'},
+      headers: {'Content-Type': 'application/json'}, */
+      url,
+      body: data,
     );
     print(response.statusCode);
     if (response.statusCode == 200) {
@@ -67,6 +74,8 @@ class PatientFormState extends State<PatientForm> {
           error = jsonResponse['message'];
           _isLoading = false;
         });
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => MainPage()));
       } else {
         setState(() {
           error = "Error Occured";
@@ -81,6 +90,8 @@ class PatientFormState extends State<PatientForm> {
     }
   }
 
+  // ignore: slash_for_doc_comments
+  /*********************************************************DECLARE VARIABLES*********************************************************/
   final _formKey = GlobalKey<FormState>();
   //text field state
   String error = '';
@@ -100,17 +111,33 @@ class PatientFormState extends State<PatientForm> {
     3: "Government Place Quarantine",
     4: "Other"
   };
-  //image portion
-  File _image;
+  String statusAadhar = "No file Choosen";
+  String statusReport = "No file Choosen";
+  // ignore: unused_field
+  File _aadhar;
+  // ignore: unused_field
+  File _report;
+  String base64Aadhar = "";
+  String base64Report = "";
+  // ignore: slash_for_doc_comments
+  /*********************************************************WIDGET STARTS*********************************************************/
   @override
   Widget build(BuildContext context) {
-    Future getImage() async {
+    Future chooseAadhar() async {
       // ignore: deprecated_member_use
-      var image = await ImagePicker.pickImage(source: ImageSource.gallery);
-
+      var img = await ImagePicker.pickImage(source: ImageSource.gallery);
       setState(() {
-        _image = image;
-        //print('Image Path $_image');
+        _aadhar = img;
+        statusAadhar = "File Choosen";
+      });
+    }
+
+    Future chooseReport() async {
+      // ignore: deprecated_member_use
+      var img = await ImagePicker.pickImage(source: ImageSource.gallery);
+      setState(() {
+        _report = img;
+        statusReport = "File Choosen";
       });
     }
 
@@ -131,66 +158,8 @@ class PatientFormState extends State<PatientForm> {
                 padding: EdgeInsets.symmetric(horizontal: 20.0),
                 children: <Widget>[
                   SizedBox(height: 30.0),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      Padding(padding: EdgeInsets.only(top: 30.0)),
-                      Align(
-                        alignment: Alignment.topLeft,
-                        child: CircleAvatar(
-                          radius: 80,
-                          backgroundColor: Colors.black87,
-                          child: ClipOval(
-                            child: new SizedBox(
-                                width: 155.0,
-                                height: 155.0,
-                                child: (_image != null)
-                                    ? Image.file(
-                                        _image,
-                                        fit: BoxFit.fill,
-                                      )
-                                    : Image.asset(
-                                        "assets/images/unpic.png",
-                                        fit: BoxFit.fill,
-                                      )),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(top: 60.0),
-                        child: IconButton(
-                          icon: Icon(
-                            FontAwesomeIcons.camera,
-                            size: 30.0,
-                          ),
-                          onPressed: () {
-                            getImage();
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
-                  //----------------------------image-------------------------
-                  /* Container(
-              width: 50,
-              height: 200,
-              decoration: BoxDecoration(
-                color: const Color(0xff7c94b6),
-                image: const DecorationImage(
-                  image: NetworkImage(
-                      'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg'),
-                  fit: BoxFit.cover,
-                ),
-                border: Border.all(
-                  color: Colors.black,
-                  width: 8,
-                ),
-                borderRadius: BorderRadius.circular(12),
-              ),
-            ), */
                   //----------------------------First Name-----------------------
                   TextFormField(
-                    //controller: fname,
                     initialValue: first,
                     keyboardType: TextInputType.text,
                     decoration: const InputDecoration(
@@ -320,13 +289,13 @@ class PatientFormState extends State<PatientForm> {
                   //---------------------Date of corona positive-------------------
                   TextFormField(
                     //controller: date,
-                    keyboardType: TextInputType.datetime,
+                    keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
-                      hintText: 'Date of corona positive',
+                      hintText: 'DDMMYYYY',
                       labelText: 'Date of corona positive',
                     ),
                     validator: (value) {
-                      if (value.isEmpty) {
+                      if (value.isEmpty || value.length != 8) {
                         return 'Please enter valid Date';
                       }
                       return null;
@@ -520,34 +489,55 @@ class PatientFormState extends State<PatientForm> {
                     },
                   ),
                   //------------------------Aadhar---------------------------------
-
+                  Padding(padding: EdgeInsets.only(top: 10)),
+                  Text(
+                    statusAadhar,
+                    style: TextStyle(
+                      color: Colors.blue,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  OutlineButton(
+                    onPressed: () {
+                      chooseAadhar();
+                    },
+                    child: Text("Upload Aadhar"),
+                  ),
+                  //------------------------Report---------------------------------
+                  Padding(padding: EdgeInsets.only(top: 5)),
+                  Text(
+                    statusReport,
+                    style: TextStyle(
+                      color: Colors.blue,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  OutlineButton(
+                    onPressed: () {
+                      chooseReport();
+                    },
+                    child: Text("Upload Report"),
+                  ),
                   //************************Submit Button**************************
                   new Container(
                       padding: const EdgeInsets.only(
-                          left: 110.0, right: 130.0, top: 40.0),
+                          left: 110.0, right: 130.0, top: 10.0),
                       child: new RaisedButton(
                         child: const Text("Submit"),
                         onPressed: () {
-                          // if (_formKey.currentState.validate() && _image != null) {
-                          //   Navigator.push(context,
-                          //       MaterialPageRoute(builder: (context) => MainPage()));
-                          // }
                           if (_formKey.currentState.validate()) {
+                            base64Aadhar =
+                                base64Encode(_aadhar.readAsBytesSync());
+                            base64Report =
+                                base64Encode(_report.readAsBytesSync());
                             fname.text = first;
                             lname.text = last;
                             address.text = add;
-                            // print(fname.text);
-                            // print(lname.text);
-                            // print(gender.text);
-                            // print(mobile.text);
-                            // print(age.text);
-                            // print(date.text);
-                            // print(given.text);
-                            // print(quantity.text);
-                            // print(dynamite.text);
-                            // print(place.text);
-                            // print(address.text);
-                            // print(other.text);
+                            if (other.text == null) {
+                              other.text = "none";
+                            }
                             setState(() {
                               _isLoading = true;
                             });
