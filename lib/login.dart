@@ -43,9 +43,10 @@ class _LoginPageState extends State<LoginPage> {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     Map data = {'email': email, 'password': pass};
     print(data);
+    // ignore: avoid_init_to_null
     var jsonResponse = null;
     var response = await http.post(
-      Uri.encodeFull("http://chitraherbals.in/api/login"),
+      Uri.encodeFull("http://chkctf.org/api/login"),
       body: jsonEncode(data),
       headers: {'Content-Type': 'application/json'},
     );

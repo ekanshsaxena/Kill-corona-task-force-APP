@@ -2,9 +2,11 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:chitra_herbals/main.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:dropdown_formfield/dropdown_formfield.dart';
 import 'package:http/http.dart' as http;
+import 'package:http_parser/http_parser.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -38,8 +40,39 @@ class PatientFormState extends State<PatientForm> {
     // ignore: non_constant_identifier_names
     var user_id = sharedPreferences.get('token');
     print(user_id);
-    var url = "http://chitraherbals.in/api/create/patient";
-    Map data = {
+    var url = "http://chkctf.org/api/create/patient";
+    Dio dio = new Dio();
+    String filename1 = _aadhar == null ? " " : _aadhar.path.split('/').last;
+    String filename2 = _report == null ? " " : _report.path.split('/').last;
+    FormData formData = new FormData.fromMap({
+      "user_id": user_id,
+      "fname": fname.text,
+      "lname": lname.text,
+      "gender": gender.text,
+      "mobile": mobile.text,
+      "adhar": _aadhar == null
+          ? ""
+          : await MultipartFile.fromFile(_aadhar.path,
+              filename: filename1,
+              contentType: MediaType('image', "png/jpeg/jpg")),
+      "report": _report == null
+          ? ""
+          : await MultipartFile.fromFile(_report.path,
+              filename: filename2,
+              contentType: MediaType('image', "png/jpeg/jpg")),
+      "date_positive": date.text,
+      "quarantine_place": place.text,
+      "age": age.text,
+      "given": given.text,
+      "quantity": quantity.text,
+      "address": address.text,
+      "other": other.text,
+      "dynamiteoil": dynamite.text,
+    });
+    print(formData);
+    var jsonResponse = null;
+    Response response = await dio.post(url, data: formData);
+/*     Map data = {
       "user_id": user_id,
       "fname": fname.text,
       "lname": lname.text,
@@ -59,23 +92,21 @@ class PatientFormState extends State<PatientForm> {
     // ignore: avoid_init_to_null
     var jsonResponse = null;
     var response = await http.post(
-      /* Uri.encodeFull(url),
+      Uri.encodeFull(url),
       body: jsonEncode(data),
-      headers: {'Content-Type': 'application/json'}, */
-      url,
-      body: data,
-    );
+      headers: {'Content-Type': 'application/json'},
+    ); */
     print(response.statusCode);
+    print(response);
     if (response.statusCode == 200) {
-      jsonResponse = json.decode(response.body);
+      jsonResponse = json.decode(response.toString());
       //print(jsonResponse['token']);
       if (jsonResponse != null && jsonResponse['status'] == true) {
         setState(() {
           error = jsonResponse['message'];
           _isLoading = false;
         });
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => MainPage()));
+        //Navigator.push(context, MaterialPageRoute(builder: (context) => MainPage()));
       } else {
         setState(() {
           error = "Error Occured";
@@ -86,7 +117,7 @@ class PatientFormState extends State<PatientForm> {
       setState(() {
         _isLoading = false;
       });
-      print(response.body);
+      print(response.toString());
     }
   }
 
@@ -117,8 +148,8 @@ class PatientFormState extends State<PatientForm> {
   File _aadhar;
   // ignore: unused_field
   File _report;
-  String base64Aadhar = "";
-  String base64Report = "";
+  //String base64Aadhar = "";
+  //String base64Report = "";
   // ignore: slash_for_doc_comments
   /*********************************************************WIDGET STARTS*********************************************************/
   @override
@@ -528,10 +559,11 @@ class PatientFormState extends State<PatientForm> {
                         child: const Text("Submit"),
                         onPressed: () {
                           if (_formKey.currentState.validate()) {
-                            base64Aadhar =
-                                base64Encode(_aadhar.readAsBytesSync());
-                            base64Report =
-                                base64Encode(_report.readAsBytesSync());
+                            //base64Aadhar =base64Encode(_aadhar.readAsBytesSync());
+                            //base64Report =base64Encode(_report.readAsBytesSync());
+                            if (_aadhar == null) {
+                              print("null hai yee");
+                            }
                             fname.text = first;
                             lname.text = last;
                             address.text = add;

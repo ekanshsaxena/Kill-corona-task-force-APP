@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:chitra_herbals/login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+// ignore: unused_import
 import 'dart:convert';
 import 'dashboard_buttons.dart';
 
@@ -50,6 +51,7 @@ class _MainPageState extends State<MainPage> {
           FlatButton(
             onPressed: () {
               sharedPreferences.clear();
+              // ignore: deprecated_member_use
               sharedPreferences.commit();
               Navigator.of(context).pushAndRemoveUntil(
                   MaterialPageRoute(
