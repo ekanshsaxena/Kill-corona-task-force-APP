@@ -1,19 +1,15 @@
 import 'dart:convert';
 
 import 'package:chitra_herbals/showPatients_profile/info_holder.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
-var user_id;
+// ignore: missing_return
 Future<List> getData() async {
   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
   var user = sharedPreferences.get('token');
-  user_id = user;
   final response = await http.get("http://chkctf.org/api/patients/" + user);
-  //print(json.decode(response.toString()));
-  //print(response.statusCode);
   if (response.statusCode == 200) {
     return json.decode(response.body);
   }
@@ -59,6 +55,7 @@ class _ShowPatientsState extends State<ShowPatients> {
   }
 }
 
+// ignore: must_be_immutable
 class Items extends StatelessWidget {
   List list;
   Items({this.list});

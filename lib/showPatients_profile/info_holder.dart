@@ -1,12 +1,101 @@
 import 'package:chitra_herbals/showPatients.dart';
 import 'package:flutter/material.dart';
 import 'package:chitra_herbals/showPatients_profile/details.dart';
+import 'package:http/http.dart' as http;
 
 // ignore: must_be_immutable
 class InfoHolder extends StatelessWidget {
   Map list;
-
   InfoHolder({this.list});
+  // ignore: slash_for_doc_comments
+  /*************************************************************************Update Date_of_positive**********************************************/
+  updateDateofPositive() async {
+    var url = "http://chkctf.org/api/update/" + list['id'].toString();
+    Map data = {"date_positive": date.text, "remarks": remarks.text};
+    var response = await http.post(url, body: data);
+    if (response.statusCode == 200) {
+      print("alright");
+    }
+  }
+
+// ignore: slash_for_doc_comments
+  /*************************************************************************Update Date_of_positive**********************************************/
+  updateDateofNegative() async {
+    var url = "http://chkctf.org/api/update/" + list['id'].toString();
+    Map data = {"date_negative": date.text, "remarks": remarks.text};
+    var response = await http.post(url, body: data);
+    if (response.statusCode == 200) {
+      print("alright");
+    }
+  }
+
+  // ignore: slash_for_doc_comments
+  /**************************************************************************alreat fun**********************************************/
+  TextEditingController date = new TextEditingController();
+  TextEditingController remarks = new TextEditingController();
+  _displayDialog(BuildContext context, String type) async {
+    date.text = "";
+    final _formKey = GlobalKey<FormState>();
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text("Mark " + type),
+            content: Form(
+              key: _formKey,
+              child: Column(
+                children: <Widget>[
+                  TextFormField(
+                    //controller: date,
+                    keyboardType: TextInputType.number,
+                    decoration: const InputDecoration(
+                      hintText: 'DDMMYYYY',
+                      labelText: 'Date',
+                    ),
+                    validator: (value) {
+                      if (value.isEmpty || value.length != 8) {
+                        return "Incorrect Date";
+                      }
+                      return null;
+                    },
+                    onChanged: (value) {
+                      date.text = value;
+                    },
+                  ),
+                  TextFormField(
+                    //controller: date,
+                    keyboardType: TextInputType.text,
+                    decoration: const InputDecoration(
+                      hintText: 'remarks',
+                      labelText: 'Remarks',
+                    ),
+                    onChanged: (value) {
+                      remarks.text = value;
+                    },
+                  ),
+                ],
+              ),
+            ),
+            actions: <Widget>[
+              new FlatButton(
+                child: new Text('SUBMIT'),
+                onPressed: () {
+                  if (_formKey.currentState.validate()) {
+                    if (type == "Positive") {
+                      updateDateofPositive();
+                    } else {
+                      updateDateofNegative();
+                    }
+                    Navigator.of(context).pop();
+                  }
+                },
+              )
+            ],
+          );
+        });
+  }
+  // ignore: slash_for_doc_comments
+  /*********************************************************************************************************************************/
 
   @override
   Widget build(BuildContext context) {
@@ -65,12 +154,13 @@ class InfoHolder extends StatelessWidget {
                                                       15.0)),
                                           color: Colors.pink,
                                           child: Text(
-                                            'Positive',
+                                            'Mark Positive',
                                             style: TextStyle(
                                                 color: Colors.white,
                                                 fontSize: 13.0),
                                           ),
-                                          onPressed: () {},
+                                          onPressed: () => _displayDialog(
+                                              context, "Positive"),
                                         ),
                                       ),
                                       Padding(
@@ -91,7 +181,8 @@ class InfoHolder extends StatelessWidget {
                                                 color: Colors.white,
                                                 fontSize: 13.0),
                                           ),
-                                          onPressed: () {},
+                                          onPressed: () => _displayDialog(
+                                              context, "Negative"),
                                         ),
                                       ),
                                     ],

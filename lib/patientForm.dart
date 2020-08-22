@@ -1,11 +1,9 @@
 /*Image*/
 import 'dart:convert';
 import 'dart:io';
-import 'package:chitra_herbals/main.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:dropdown_formfield/dropdown_formfield.dart';
-import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -39,7 +37,6 @@ class PatientFormState extends State<PatientForm> {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     // ignore: non_constant_identifier_names
     var user_id = sharedPreferences.get('token');
-    print(user_id);
     var url = "http://chkctf.org/api/create/patient";
     Dio dio = new Dio();
     String filename1 = _aadhar == null ? " " : _aadhar.path.split('/').last;
@@ -69,11 +66,9 @@ class PatientFormState extends State<PatientForm> {
       "other": other.text,
       "dynamiteoil": dynamite.text,
     });
-    print(formData);
+    // ignore: avoid_init_to_null
     var jsonResponse = null;
     Response response = await dio.post(url, data: formData);
-    print(response.statusCode);
-    print(response);
     if (response.statusCode == 200) {
       jsonResponse = json.decode(response.toString());
       if (jsonResponse != null && jsonResponse['status'] == true) {
@@ -534,11 +529,6 @@ class PatientFormState extends State<PatientForm> {
                         child: const Text("Submit"),
                         onPressed: () {
                           if (_formKey.currentState.validate()) {
-                            //base64Aadhar =base64Encode(_aadhar.readAsBytesSync());
-                            //base64Report =base64Encode(_report.readAsBytesSync());
-                            if (_aadhar == null) {
-                              print("null hai yee");
-                            }
                             fname.text = first;
                             lname.text = last;
                             address.text = add;
