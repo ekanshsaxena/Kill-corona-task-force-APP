@@ -1,5 +1,5 @@
-import 'package:chitra_herbals/main.dart';
 import 'package:chitra_herbals/patientForm.dart';
+import 'package:chitra_herbals/showPatients.dart';
 import 'package:flutter/material.dart';
 import 'package:toast/toast.dart';
 
@@ -25,7 +25,7 @@ class DashboardButton extends StatelessWidget {
                     if (_name == "Form") {
                       return PatientForm();
                     } else if (_name == "Profile") {
-                      return MainPage();
+                      return ShowPatients();
                     }
                   }));
                 },

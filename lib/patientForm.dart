@@ -72,35 +72,10 @@ class PatientFormState extends State<PatientForm> {
     print(formData);
     var jsonResponse = null;
     Response response = await dio.post(url, data: formData);
-/*     Map data = {
-      "user_id": user_id,
-      "fname": fname.text,
-      "lname": lname.text,
-      "gender": gender.text,
-      "phone": mobile.text,
-      "aadhar": "",
-      "report": "",
-      "date_positive": date.text,
-      "quarantine_place": place.text,
-      "age": age.text,
-      "given": given.text,
-      "quantity": quantity.text,
-      "address": address.text,
-      "other": other.text,
-      "dynamiteoil": dynamite.text,
-    };
-    // ignore: avoid_init_to_null
-    var jsonResponse = null;
-    var response = await http.post(
-      Uri.encodeFull(url),
-      body: jsonEncode(data),
-      headers: {'Content-Type': 'application/json'},
-    ); */
     print(response.statusCode);
     print(response);
     if (response.statusCode == 200) {
       jsonResponse = json.decode(response.toString());
-      //print(jsonResponse['token']);
       if (jsonResponse != null && jsonResponse['status'] == true) {
         setState(() {
           error = jsonResponse['message'];
@@ -201,7 +176,7 @@ class PatientFormState extends State<PatientForm> {
                       if (value.isEmpty) {
                         return 'Please enter some text';
                       }
-                      if (value.length > 100) {
+                      if (value.length > 20) {
                         return 'Cross maximum character limit';
                       }
                       return null;
@@ -224,7 +199,7 @@ class PatientFormState extends State<PatientForm> {
                       if (value.isEmpty) {
                         return 'Please enter some text';
                       }
-                      if (value.length > 100) {
+                      if (value.length > 20) {
                         return 'Cross maximum character limit';
                       }
                       return null;
