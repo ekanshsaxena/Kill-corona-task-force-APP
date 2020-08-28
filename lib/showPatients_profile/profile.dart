@@ -331,42 +331,104 @@ class CardSection extends StatelessWidget {
                   ),
                 ),
                 //----------------------------------------------------Buttons---------------------------------------------
-                // Padding(
-                //   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                //   child: Row(
-                //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                //     children: <Widget>[
-                //       ListTile(
-                //         //color: Color.fromRGBO(217, 37, 80, 1),
-                //         title: Text(
-                //           "View Aadhar Card",
-                //           style: TextStyle(
-                //               fontSize: 25,
-                //               color: Colors.white,
-                //               fontWeight: FontWeight.w300),
-                //         ),
-                //         onTap: () {},
-                //       ),
-                //       ListTile(
-                //         //color: Color.fromRGBO(217, 37, 80, 1),
-                //         title: Text(
-                //           "View Aadhar Card",
-                //           style: TextStyle(
-                //               fontSize: 25,
-                //               color: Colors.white,
-                //               fontWeight: FontWeight.w300),
-                //         ),
-                //         onTap: () {},
-                //       ),
-                //     ],
-                //   ),
-                // ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    //crossAxisAlignment: CrossAxisAlignment.,
+                    children: <Widget>[
+                      Expanded(
+                        child: Container(
+                          constraints: BoxConstraints(maxHeight: 40),
+                          child: RaisedButton(
+                            color: Color.fromRGBO(217, 37, 80, 1),
+                            child: Text(
+                              "View Aadhar",
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            onPressed: () async {
+                              await showDialog(
+                                  context: context,
+                                  builder: (_) => AadharImageDialog(
+                                        mp: mp,
+                                      ));
+                            },
+                          ),
+                        ),
+                      ),
+                      Padding(padding: EdgeInsets.only(left: 10)),
+                      Expanded(
+                        child: Container(
+                          constraints: BoxConstraints(maxHeight: 40),
+                          child: RaisedButton(
+                            color: Color.fromRGBO(217, 37, 80, 1),
+                            child: Text(
+                              "View Report",
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            onPressed: () async {
+                              await showDialog(
+                                  context: context,
+                                  builder: (_) => ReportImageDialog(
+                                        mp: mp,
+                                      ));
+                            },
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
                 //--------------------------------------------------------------------------------------------------------
               ],
             ),
           ),
         ),
       ],
+    );
+  }
+}
+
+// ignore: must_be_immutable
+class AadharImageDialog extends StatelessWidget {
+  Map mp;
+  AadharImageDialog({this.mp});
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      child: Container(
+        width: double.infinity,
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image: NetworkImage(
+                    "http://chkctf.org/asset/report/" + mp['patient']['adhar']),
+                fit: BoxFit.cover)),
+      ),
+    );
+  }
+}
+
+// ignore: must_be_immutable
+class ReportImageDialog extends StatelessWidget {
+  Map mp;
+  ReportImageDialog({this.mp});
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      child: Container(
+        width: double.infinity,
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image: NetworkImage("http://chkctf.org/asset/report/" +
+                    mp['patient']['report']),
+                fit: BoxFit.cover)),
+      ),
     );
   }
 }
