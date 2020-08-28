@@ -70,12 +70,12 @@ class _MainPageState extends State<MainPage> {
         child: Column(
           children: <Widget>[
             Container(
-              height: 400,
+              height: 300,
               width: double.infinity,
               decoration: BoxDecoration(
                   image: DecorationImage(
                       image: ExactAssetImage("assets/images/logo.png"),
-                      fit: BoxFit.cover)),
+                      fit: BoxFit.fill)),
             ),
             Padding(padding: EdgeInsets.only(top: 40)),
             ListTile(
