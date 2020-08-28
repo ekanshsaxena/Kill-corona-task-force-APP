@@ -70,19 +70,12 @@ class _MainPageState extends State<MainPage> {
         child: Column(
           children: <Widget>[
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 30, vertical: 80),
-              //color: Colors.blue[100],
-              color: Theme.of(context).primaryColor,
-              child: Center(
-                child: Text(
-                  "Chitra Herbals",
-                  style: TextStyle(
-                    color: Color.fromRGBO(57, 80, 118, 1),
-                    fontSize: 25,
-                    fontWeight: FontWeight.w900,
-                  ),
-                ),
-              ),
+              height: 400,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: ExactAssetImage("assets/images/logo.png"),
+                      fit: BoxFit.cover)),
             ),
             Padding(padding: EdgeInsets.only(top: 40)),
             ListTile(

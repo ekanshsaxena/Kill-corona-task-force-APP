@@ -7,7 +7,8 @@ import 'package:http/http.dart' as http;
 Future<Map> getInfo() async {
   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
   var user = sharedPreferences.get('token');
-  final response = await http.get("http://chkctf.org/api/user/" + user);
+  final response =
+      await http.get("http://chkctf.org/api/user/" + user.toString());
   if (response.statusCode == 200) {
     return json.decode(response.body);
   }

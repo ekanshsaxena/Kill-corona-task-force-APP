@@ -406,8 +406,8 @@ class AadharImageDialog extends StatelessWidget {
         width: double.infinity,
         decoration: BoxDecoration(
             image: DecorationImage(
-                image: NetworkImage(
-                    "http://chkctf.org/asset/report/" + mp['patient']['adhar']),
+                image: NetworkImage("http://chkctf.org/asset/documents/adhar/" +
+                    mp['patient']['adhar']),
                 fit: BoxFit.cover)),
       ),
     );
