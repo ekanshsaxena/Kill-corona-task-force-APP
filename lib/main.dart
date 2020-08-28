@@ -1,3 +1,6 @@
+import 'package:chitra_herbals/home/Home.dart';
+import 'package:chitra_herbals/patientForm.dart';
+import 'package:chitra_herbals/showPatients.dart';
 import 'package:flutter/material.dart';
 import 'package:chitra_herbals/login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -63,7 +66,70 @@ class _MainPageState extends State<MainPage> {
         ],
       ),
       backgroundColor: Colors.blue[50],
-      body: new ListView(
+      drawer: Drawer(
+        child: Column(
+          children: <Widget>[
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 30, vertical: 80),
+              //color: Colors.blue[100],
+              color: Theme.of(context).primaryColor,
+              child: Center(
+                child: Text(
+                  "Chitra Herbals",
+                  style: TextStyle(
+                    color: Color.fromRGBO(57, 80, 118, 1),
+                    fontSize: 25,
+                    fontWeight: FontWeight.w900,
+                  ),
+                ),
+              ),
+            ),
+            Padding(padding: EdgeInsets.only(top: 40)),
+            ListTile(
+              leading: Icon(Icons.assignment),
+              title: Text(
+                "Add Patient",
+                style: TextStyle(fontSize: 20),
+              ),
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return PatientForm();
+                }));
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.group),
+              title: Text(
+                "Show Patients",
+                style: TextStyle(fontSize: 20),
+              ),
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return ShowPatients();
+                }));
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.arrow_back),
+              title: Text(
+                "Log Out",
+                style: TextStyle(fontSize: 20),
+              ),
+              onTap: () {
+                sharedPreferences.clear();
+                // ignore: deprecated_member_use
+                sharedPreferences.commit();
+                Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => LoginPage()),
+                    (Route<dynamic> route) => false);
+              },
+            ),
+          ],
+        ),
+      ),
+      body: CoverPage(),
+      /* new ListView(
         //shrinkWrap: true,
         children: <Widget>[
           Padding(
@@ -91,8 +157,7 @@ class _MainPageState extends State<MainPage> {
             ],
           ),
         ],
-      ),
-      drawer: Drawer(),
+      ), */
     );
   }
 }

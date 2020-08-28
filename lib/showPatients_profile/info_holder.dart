@@ -1,4 +1,5 @@
 import 'package:chitra_herbals/showPatients.dart';
+import 'package:chitra_herbals/showPatients_profile/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:chitra_herbals/showPatients_profile/details.dart';
 import 'package:http/http.dart' as http;
@@ -116,7 +117,7 @@ class InfoHolder extends StatelessWidget {
                           Navigator.push(context,
                               MaterialPageRoute(builder: (context) {
                             //print(doc);
-                            return ShowPatients();
+                            return Profile(id: list['id']);
                           }));
                         },
                         child: Row(
@@ -128,7 +129,7 @@ class InfoHolder extends StatelessWidget {
                                     minHeight: 0,
                                     maxHeight: 140,
                                     minWidth: 140,
-                                    maxWidth: 220),
+                                    maxWidth: double.infinity),
                                 child: Padding(
                                   padding: const EdgeInsets.only(
                                       left: 10.0, top: 20),

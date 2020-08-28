@@ -1,31 +1,30 @@
 import 'dart:convert';
-
-import 'package:chitra_herbals/showPatients_profile/info_holder.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:shared_preferences/shared_preferences.dart';
 
 // ignore: missing_return
-Future<List> getData() async {
-  SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-  var user = sharedPreferences.get('token');
-  final response = await http.get("http://chkctf.org/api/patients/" + user);
+Future<Map> getPatientData(int id) async {
+  final response =
+      await http.get("http://chkctf.org/api/patient/" + id.toString());
   if (response.statusCode == 200) {
     return json.decode(response.body);
   }
 }
 
-class ShowPatients extends StatefulWidget {
+// ignore: must_be_immutable
+class Profile extends StatefulWidget {
+  int id;
+  Profile({this.id});
   @override
-  _ShowPatientsState createState() => _ShowPatientsState();
+  _ProfileState createState() => _ProfileState();
 }
 
-class _ShowPatientsState extends State<ShowPatients> {
-  Future<List> futuregetData;
+class _ProfileState extends State<Profile> {
+  Future<Map> futuregetPatientData;
   @override
   void initState() {
     super.initState();
-    futuregetData = getData();
+    futuregetPatientData = getPatientData(widget.id);
   }
 
   @override
@@ -35,15 +34,15 @@ class _ShowPatientsState extends State<ShowPatients> {
       appBar: AppBar(
         title: Text("Patients List"),
       ),
-      body: FutureBuilder<List>(
-          future: futuregetData,
+      body: FutureBuilder<Map>(
+          future: futuregetPatientData,
           builder: (context, snapshot) {
             if (snapshot.hasError) {
               print("error");
             }
             if (snapshot.hasData || snapshot.data != null) {
               //print("enter");
-              return Items(list: snapshot.data);
+              return CardSection(mp: snapshot.data);
             } else {
               return Center(
                   child: CircularProgressIndicator(
@@ -56,17 +55,11 @@ class _ShowPatientsState extends State<ShowPatients> {
 }
 
 // ignore: must_be_immutable
-class Items extends StatelessWidget {
-  List list;
-  Items({this.list});
+class CardSection extends StatelessWidget {
+  Map mp;
+  CardSection({this.mp});
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: list == null ? 0 : list.length,
-      itemBuilder: (context, index) {
-        Map listData = list[index];
-        return InfoHolder(list: listData);
-      },
-    );
+    return Container();
   }
 }
