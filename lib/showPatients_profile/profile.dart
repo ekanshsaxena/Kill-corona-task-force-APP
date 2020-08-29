@@ -90,7 +90,7 @@ class CardSection extends StatelessWidget {
                     "Patient Details",
                     style: TextStyle(
                         decoration: TextDecoration.underline,
-                        fontSize: 25,
+                        fontSize: 22,
                         color: Color.fromRGBO(57, 80, 118, 1),
                         fontWeight: FontWeight.w700),
                   ),
@@ -101,19 +101,25 @@ class CardSection extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      Text("Patient Name: ",
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: Color.fromRGBO(57, 80, 118, 1),
-                            fontWeight: FontWeight.w600,
-                          )),
-                      Text(
-                          mp['patient']['fname'] + " " + mp['patient']['lname'],
-                          style: TextStyle(
-                            fontSize: 18,
-                            color: Color.fromRGBO(57, 80, 118, 1),
-                            fontWeight: FontWeight.normal,
-                          )),
+                      Flexible(
+                        child: Text("Patient Name: ",
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Color.fromRGBO(57, 80, 118, 1),
+                              fontWeight: FontWeight.w600,
+                            )),
+                      ),
+                      Flexible(
+                        child: Text(
+                            mp['patient']['fname'] +
+                                " " +
+                                mp['patient']['lname'],
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Color.fromRGBO(57, 80, 118, 1),
+                              fontWeight: FontWeight.normal,
+                            )),
+                      ),
                     ],
                   ),
                 ),
@@ -123,18 +129,22 @@ class CardSection extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      Text("Gender: ",
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: Color.fromRGBO(57, 80, 118, 1),
-                            fontWeight: FontWeight.w600,
-                          )),
-                      Text(mp['patient']['gender'],
-                          style: TextStyle(
-                            fontSize: 18,
-                            color: Color.fromRGBO(57, 80, 118, 1),
-                            fontWeight: FontWeight.normal,
-                          )),
+                      Flexible(
+                        child: Text("Gender: ",
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Color.fromRGBO(57, 80, 118, 1),
+                              fontWeight: FontWeight.w600,
+                            )),
+                      ),
+                      Flexible(
+                        child: Text(mp['patient']['gender'],
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Color.fromRGBO(57, 80, 118, 1),
+                              fontWeight: FontWeight.normal,
+                            )),
+                      ),
                     ],
                   ),
                 ),
@@ -144,18 +154,22 @@ class CardSection extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      Text("Age: ",
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: Color.fromRGBO(57, 80, 118, 1),
-                            fontWeight: FontWeight.w600,
-                          )),
-                      Text(mp['patient']['age'].toString(),
-                          style: TextStyle(
-                            fontSize: 18,
-                            color: Color.fromRGBO(57, 80, 118, 1),
-                            fontWeight: FontWeight.normal,
-                          )),
+                      Flexible(
+                        child: Text("Age: ",
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Color.fromRGBO(57, 80, 118, 1),
+                              fontWeight: FontWeight.w600,
+                            )),
+                      ),
+                      Flexible(
+                        child: Text(mp['patient']['age'].toString(),
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Color.fromRGBO(57, 80, 118, 1),
+                              fontWeight: FontWeight.normal,
+                            )),
+                      ),
                     ],
                   ),
                 ),
@@ -165,18 +179,22 @@ class CardSection extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      Text("Phone: ",
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: Color.fromRGBO(57, 80, 118, 1),
-                            fontWeight: FontWeight.w600,
-                          )),
-                      Text(mp['patient']['phone'].toString(),
-                          style: TextStyle(
-                            fontSize: 18,
-                            color: Color.fromRGBO(57, 80, 118, 1),
-                            fontWeight: FontWeight.normal,
-                          )),
+                      Flexible(
+                        child: Text("Phone: ",
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Color.fromRGBO(57, 80, 118, 1),
+                              fontWeight: FontWeight.w600,
+                            )),
+                      ),
+                      Flexible(
+                        child: Text(mp['patient']['phone'].toString(),
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Color.fromRGBO(57, 80, 118, 1),
+                              fontWeight: FontWeight.normal,
+                            )),
+                      ),
                     ],
                   ),
                 ),
@@ -186,39 +204,47 @@ class CardSection extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      Text("Date of Positive: ",
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: Color.fromRGBO(57, 80, 118, 1),
-                            fontWeight: FontWeight.w600,
-                          )),
-                      Text(mp['patient']['date_positive'].toString(),
-                          style: TextStyle(
-                            fontSize: 18,
-                            color: Color.fromRGBO(57, 80, 118, 1),
-                            fontWeight: FontWeight.normal,
-                          )),
+                      Flexible(
+                        child: Text("Date of Positive: ",
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Color.fromRGBO(57, 80, 118, 1),
+                              fontWeight: FontWeight.w600,
+                            )),
+                      ),
+                      Flexible(
+                        child: Text(mp['patient']['date_positive'].toString(),
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Color.fromRGBO(57, 80, 118, 1),
+                              fontWeight: FontWeight.normal,
+                            )),
+                      ),
                     ],
                   ),
                 ),
-                //------------------------------------------------------QUARANTINE PLACE-----------------------------------------
+                //-----------------------------------------------------QUARANTINE PLACE-----------------------------------------
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      Text("Quarantine Place: ",
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: Color.fromRGBO(57, 80, 118, 1),
-                            fontWeight: FontWeight.w600,
-                          )),
-                      Text(mp['patient']['quarantine_place'],
-                          style: TextStyle(
-                            fontSize: 18,
-                            color: Color.fromRGBO(57, 80, 118, 1),
-                            fontWeight: FontWeight.normal,
-                          )),
+                      Flexible(
+                        child: Text("Quarantine Place: ",
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Color.fromRGBO(57, 80, 118, 1),
+                              fontWeight: FontWeight.w600,
+                            )),
+                      ),
+                      Flexible(
+                        child: Text(mp['patient']['quarantine_place'],
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Color.fromRGBO(57, 80, 118, 1),
+                              fontWeight: FontWeight.normal,
+                            )),
+                      ),
                     ],
                   ),
                 ),
@@ -228,18 +254,22 @@ class CardSection extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      Text("Address: ",
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: Color.fromRGBO(57, 80, 118, 1),
-                            fontWeight: FontWeight.w600,
-                          )),
-                      Text(mp['patient']['address'],
-                          style: TextStyle(
-                            fontSize: 18,
-                            color: Color.fromRGBO(57, 80, 118, 1),
-                            fontWeight: FontWeight.normal,
-                          )),
+                      Flexible(
+                        child: Text("Address: ",
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Color.fromRGBO(57, 80, 118, 1),
+                              fontWeight: FontWeight.w600,
+                            )),
+                      ),
+                      Flexible(
+                        child: Text(mp['patient']['address'],
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Color.fromRGBO(57, 80, 118, 1),
+                              fontWeight: FontWeight.normal,
+                            )),
+                      ),
                     ],
                   ),
                 ),
@@ -249,21 +279,25 @@ class CardSection extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      Text("Remarks: ",
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: Color.fromRGBO(57, 80, 118, 1),
-                            fontWeight: FontWeight.w600,
-                          )),
-                      Text(
-                          mp['patient']['remarks'] == null
-                              ? "none"
-                              : mp['patient']['remarks'],
-                          style: TextStyle(
-                            fontSize: 18,
-                            color: Color.fromRGBO(57, 80, 118, 1),
-                            fontWeight: FontWeight.normal,
-                          )),
+                      Flexible(
+                        child: Text("Remarks: ",
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Color.fromRGBO(57, 80, 118, 1),
+                              fontWeight: FontWeight.w600,
+                            )),
+                      ),
+                      Flexible(
+                        child: Text(
+                            mp['patient']['remarks'] == null
+                                ? "none"
+                                : mp['patient']['remarks'],
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Color.fromRGBO(57, 80, 118, 1),
+                              fontWeight: FontWeight.normal,
+                            )),
+                      ),
                     ],
                   ),
                 ),
@@ -273,18 +307,22 @@ class CardSection extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      Text("Super Sanjeevini Given: ",
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: Color.fromRGBO(57, 80, 118, 1),
-                            fontWeight: FontWeight.w600,
-                          )),
-                      Text(mp['patient']['given'],
-                          style: TextStyle(
-                            fontSize: 18,
-                            color: Color.fromRGBO(57, 80, 118, 1),
-                            fontWeight: FontWeight.normal,
-                          )),
+                      Flexible(
+                        child: Text("Super Sanjeevini Given: ",
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Color.fromRGBO(57, 80, 118, 1),
+                              fontWeight: FontWeight.w600,
+                            )),
+                      ),
+                      Flexible(
+                        child: Text(mp['patient']['given'],
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Color.fromRGBO(57, 80, 118, 1),
+                              fontWeight: FontWeight.normal,
+                            )),
+                      ),
                     ],
                   ),
                 ),
@@ -294,18 +332,22 @@ class CardSection extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      Text("Quantity of Super Sanjeevini: ",
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: Color.fromRGBO(57, 80, 118, 1),
-                            fontWeight: FontWeight.w600,
-                          )),
-                      Text(mp['patient']['quantity'].toString(),
-                          style: TextStyle(
-                            fontSize: 18,
-                            color: Color.fromRGBO(57, 80, 118, 1),
-                            fontWeight: FontWeight.normal,
-                          )),
+                      Flexible(
+                        child: Text("Quantity of Super Sanjeevini: ",
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Color.fromRGBO(57, 80, 118, 1),
+                              fontWeight: FontWeight.w600,
+                            )),
+                      ),
+                      Flexible(
+                        child: Text(mp['patient']['quantity'].toString(),
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Color.fromRGBO(57, 80, 118, 1),
+                              fontWeight: FontWeight.normal,
+                            )),
+                      ),
                     ],
                   ),
                 ),
@@ -315,18 +357,22 @@ class CardSection extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      Text("Dynamite Oil Given: ",
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: Color.fromRGBO(57, 80, 118, 1),
-                            fontWeight: FontWeight.w600,
-                          )),
-                      Text(mp['patient']['dynamiteoil'],
-                          style: TextStyle(
-                            fontSize: 18,
-                            color: Color.fromRGBO(57, 80, 118, 1),
-                            fontWeight: FontWeight.normal,
-                          )),
+                      Flexible(
+                        child: Text("Dynamite Oil Given: ",
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Color.fromRGBO(57, 80, 118, 1),
+                              fontWeight: FontWeight.w600,
+                            )),
+                      ),
+                      Flexible(
+                        child: Text(mp['patient']['dynamiteoil'],
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Color.fromRGBO(57, 80, 118, 1),
+                              fontWeight: FontWeight.normal,
+                            )),
+                      ),
                     ],
                   ),
                 ),
@@ -341,11 +387,12 @@ class CardSection extends StatelessWidget {
                         child: Container(
                           constraints: BoxConstraints(maxHeight: 40),
                           child: RaisedButton(
+                            elevation: 8.0,
                             color: Color.fromRGBO(217, 37, 80, 1),
                             child: Text(
-                              "View Aadhar",
+                              "Aadhar",
                               style: TextStyle(
-                                  fontSize: 20,
+                                  fontSize: 16,
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold),
                             ),
@@ -364,11 +411,12 @@ class CardSection extends StatelessWidget {
                         child: Container(
                           constraints: BoxConstraints(maxHeight: 40),
                           child: RaisedButton(
+                            elevation: 8.0,
                             color: Color.fromRGBO(217, 37, 80, 1),
                             child: Text(
-                              "View Report",
+                              "Report",
                               style: TextStyle(
-                                  fontSize: 20,
+                                  fontSize: 16,
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold),
                             ),

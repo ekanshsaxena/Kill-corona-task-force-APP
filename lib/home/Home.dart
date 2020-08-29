@@ -56,7 +56,7 @@ class DetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       shrinkWrap: true,
-      padding: EdgeInsets.only(left: 30, right: 30, top: 30, bottom: 20),
+      padding: EdgeInsets.only(left: 10, right: 10, top: 30, bottom: 20),
       children: <Widget>[
         Padding(padding: EdgeInsets.only(top: 60)),
         Container(
