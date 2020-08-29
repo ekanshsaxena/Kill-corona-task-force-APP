@@ -66,7 +66,8 @@ class _MainPageState extends State<MainPage> {
       ),
       backgroundColor: Colors.blue[50],
       drawer: Drawer(
-        child: Column(
+        child: ListView(
+          shrinkWrap: true,
           children: <Widget>[
             Container(
               height: 300,
@@ -117,6 +118,18 @@ class _MainPageState extends State<MainPage> {
                     (Route<dynamic> route) => false);
               },
             ),
+            Padding(
+              padding: EdgeInsets.only(left: 15, right: 15, top: 20),
+              child: Center(
+                child: Text(
+                  "Pradeep Srivastava\nGroup Commander\nTeamHead-KCTF\n8299806348",
+                  style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w700),
+                ),
+              ),
+            )
           ],
         ),
       ),

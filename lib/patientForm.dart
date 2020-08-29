@@ -160,7 +160,9 @@ class PatientFormState extends State<PatientForm> {
       ),
       body: _isLoading
           ? Center(
-              child: CircularProgressIndicator(),
+              child: CircularProgressIndicator(
+                valueColor: new AlwaysStoppedAnimation<Color>(Colors.blue),
+              ),
             )
           : Form(
               key: _formKey,
