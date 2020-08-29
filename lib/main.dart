@@ -6,7 +6,6 @@ import 'package:chitra_herbals/login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 // ignore: unused_import
 import 'dart:convert';
-import 'dashboard_buttons.dart';
 
 void main() => runApp(MyApp());
 
@@ -14,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "Code Land",
+      title: "CHKCTF",
       debugShowCheckedModeBanner: false,
       home: MainPage(),
       theme: ThemeData(accentColor: Colors.white70),
@@ -122,35 +121,6 @@ class _MainPageState extends State<MainPage> {
         ),
       ),
       body: CoverPage(),
-      /* new ListView(
-        //shrinkWrap: true,
-        children: <Widget>[
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              SizedBox(
-                child: DashboardButton("Form", "assets/images/help.png"),
-                height: 200.0,
-                width: 200.0,
-              ),
-              Padding(
-                padding: EdgeInsets.only(top: 30.0),
-              ),
-              SizedBox(
-                child: DashboardButton("Profile", "assets/images/faq.jpeg"),
-                height: 200.0,
-                width: 200.0,
-              )
-            ],
-          ),
-        ],
-      ), */
     );
   }
 }
