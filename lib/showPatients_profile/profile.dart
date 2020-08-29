@@ -442,9 +442,11 @@ class AadharImageDialog extends StatelessWidget {
         width: double.infinity,
         decoration: BoxDecoration(
             image: DecorationImage(
-                image: NetworkImage("http://chkctf.org/asset/documents/adhar/" +
-                    mp['patient']['adhar']),
-                fit: BoxFit.cover)),
+                image: mp['patient']['adhar'] == null
+                    ? AssetImage('assets/images/no_img.jpg')
+                    : NetworkImage("http://chkctf.org/asset/documents/adhar/" +
+                        mp['patient']['adhar']),
+                fit: BoxFit.contain)),
       ),
     );
   }
@@ -461,9 +463,11 @@ class ReportImageDialog extends StatelessWidget {
         width: double.infinity,
         decoration: BoxDecoration(
             image: DecorationImage(
-                image: NetworkImage("http://chkctf.org/asset/report/" +
-                    mp['patient']['report']),
-                fit: BoxFit.cover)),
+                image: mp['patient']['report'] == null
+                    ? AssetImage('assets/images/no_img.jpg')
+                    : NetworkImage("http://chkctf.org/asset/report/" +
+                        mp['patient']['report']),
+                fit: BoxFit.contain)),
       ),
     );
   }
