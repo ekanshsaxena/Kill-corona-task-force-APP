@@ -71,7 +71,7 @@ class DetailPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Container(
-                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                  padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
                   child: Text(
                     "Total Patients you Created",
                     style: TextStyle(
