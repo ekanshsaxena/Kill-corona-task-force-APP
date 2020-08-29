@@ -84,7 +84,7 @@ class DetailPage extends StatelessWidget {
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                   child: Text(
-                    list['total'].toString(),
+                    list['total'] == null ? 0 : list['total'].toString(),
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 30,
@@ -123,7 +123,7 @@ class DetailPage extends StatelessWidget {
                 Container(
                   padding: EdgeInsets.only(left: 20, right: 20),
                   child: Text(
-                    list['cured'].toString(),
+                    list['cured'] == null ? 0 : list['cured'].toString(),
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 30,
@@ -162,7 +162,7 @@ class DetailPage extends StatelessWidget {
                 Container(
                   padding: EdgeInsets.only(left: 20, right: 20),
                   child: Text(
-                    list['active'].toString(),
+                    list['active'] == null ? 0 : list['active'].toString(),
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 30,

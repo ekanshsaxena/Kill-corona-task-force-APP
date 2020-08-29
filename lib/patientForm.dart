@@ -76,6 +76,15 @@ class PatientFormState extends State<PatientForm> {
         setState(() {
           error = jsonResponse['message'];
           _isLoading = false;
+          first = "";
+          last = "";
+          age.text = "";
+          mobile.text = "";
+          add = "";
+          statusAadhar = "No File Choosen";
+          statusReport = "No File Choosen";
+          _aadhar = null;
+          _report = null;
         });
         //Navigator.push(context, MaterialPageRoute(builder: (context) => MainPage()));
       } else {
@@ -113,8 +122,8 @@ class PatientFormState extends State<PatientForm> {
     3: "Government Place Quarantine",
     4: "Other"
   };
-  String statusAadhar = "No file Choosen";
-  String statusReport = "No file Choosen";
+  String statusAadhar = "No File Choosen";
+  String statusReport = "No File Choosen";
   // ignore: unused_field
   File _aadhar;
   // ignore: unused_field

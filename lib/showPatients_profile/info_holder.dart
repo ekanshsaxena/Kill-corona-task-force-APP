@@ -10,14 +10,14 @@ class InfoHolder extends StatelessWidget {
   InfoHolder({this.list});
   // ignore: slash_for_doc_comments
   /*************************************************************************Update Date_of_positive**********************************************/
-  updateDateofPositive() async {
+  /* updateDateofPositive() async {
     var url = "http://chkctf.org/api/update/" + list['id'].toString();
     Map data = {"date_positive": date.text, "remarks": remarks.text};
     var response = await http.post(url, body: data);
     if (response.statusCode == 200) {
       print("alright");
     }
-  }
+  } */
 
 // ignore: slash_for_doc_comments
   /*************************************************************************Update Date_of_positive**********************************************/
@@ -51,7 +51,7 @@ class InfoHolder extends StatelessWidget {
                     keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
                       hintText: 'DDMMYYYY',
-                      labelText: 'Date',
+                      labelText: 'Date of negative',
                     ),
                     validator: (value) {
                       if (value.isEmpty || value.length != 8) {
@@ -82,11 +82,12 @@ class InfoHolder extends StatelessWidget {
                 child: new Text('SUBMIT'),
                 onPressed: () {
                   if (_formKey.currentState.validate()) {
-                    if (type == "Positive") {
+                    /* if (type == "Positive") {
                       updateDateofPositive();
                     } else {
                       updateDateofNegative();
-                    }
+                    } */
+                    updateDateofNegative();
                     Navigator.of(context).pop();
                   }
                 },
@@ -147,21 +148,20 @@ class InfoHolder extends StatelessWidget {
                                       Container(
                                         height: 40,
                                         width: 120,
-                                        child: RaisedButton(
-                                          elevation: 5.0,
+                                        child: Card(
                                           shape: new RoundedRectangleBorder(
                                               borderRadius:
                                                   new BorderRadius.circular(
                                                       15.0)),
                                           color: Colors.pink,
-                                          child: Text(
-                                            'Mark Positive',
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 13.0),
+                                          child: Center(
+                                            child: Text(
+                                              'Positive',
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 13.0),
+                                            ),
                                           ),
-                                          onPressed: () => _displayDialog(
-                                              context, "Positive"),
                                         ),
                                       ),
                                       Padding(
@@ -170,7 +170,7 @@ class InfoHolder extends StatelessWidget {
                                         height: 40,
                                         width: 120,
                                         child: RaisedButton(
-                                          elevation: 5.0,
+                                          elevation: 10.0,
                                           shape: new RoundedRectangleBorder(
                                               borderRadius:
                                                   new BorderRadius.circular(
