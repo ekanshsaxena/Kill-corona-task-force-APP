@@ -49,7 +49,7 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Chitra Herbals", style: TextStyle(color: Colors.white)),
+        title: Text("CHKCTF", style: TextStyle(color: Colors.white)),
         actions: <Widget>[
           FlatButton(
             onPressed: () {

@@ -29,14 +29,12 @@ class MyDetailsContainer extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 12.0, right: 12.0),
               child: Container(
-                  child: Flexible(
-                child: Text(
-                  list['fname'] + " ." + list['lname'][0],
-                  style: TextStyle(
-                    color: Colors.black45,
-                    fontSize: fontsize,
-                    fontWeight: FontWeight.normal,
-                  ),
+                  child: Text(
+                list['fname'] + " ." + list['lname'][0],
+                style: TextStyle(
+                  color: Colors.black45,
+                  fontSize: fontsize,
+                  fontWeight: FontWeight.normal,
                 ),
               )),
             ),
