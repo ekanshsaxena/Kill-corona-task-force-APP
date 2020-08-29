@@ -22,8 +22,8 @@ class PatientFormState extends State<PatientForm> {
   TextEditingController fname = new TextEditingController();
   TextEditingController lname = new TextEditingController();
   TextEditingController gender = new TextEditingController(text: "Male");
-  TextEditingController mobile = new TextEditingController();
-  TextEditingController age = new TextEditingController();
+  TextEditingController mobile = new TextEditingController(text: "");
+  TextEditingController age = new TextEditingController(text: "");
   TextEditingController date = new TextEditingController();
   TextEditingController given = new TextEditingController(text: "Yes");
   TextEditingController quantity = new TextEditingController();
@@ -254,6 +254,7 @@ class PatientFormState extends State<PatientForm> {
                   //-------------------------------Phone------------------------
                   TextFormField(
                     //controller: mobile,
+                    initialValue: mobile.text,
                     keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
                       hintText: 'Mobile',
@@ -277,6 +278,7 @@ class PatientFormState extends State<PatientForm> {
                   //--------------------------------Age--------------------------
                   TextFormField(
                     //controller: age,
+                    initialValue: age.text,
                     keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
                       hintText: 'Age',
@@ -553,9 +555,11 @@ class PatientFormState extends State<PatientForm> {
                         },
                       )),
                   SizedBox(height: 12.0),
-                  Text(
-                    error,
-                    style: TextStyle(color: Colors.red, fontSize: 14.0),
+                  Center(
+                    child: Text(
+                      error,
+                      style: TextStyle(color: Colors.green, fontSize: 18.0),
+                    ),
                   ),
                 ],
               ),
