@@ -29,6 +29,7 @@ dependencies:
   image_picker: ^0.6.7+4
   dropdown_formfield: ^0.1.2
   dio: any
+  flutter_plugin_android_lifecycle: ^1.0.8
 
 
   # The following adds the Cupertino Icons font to your application.
