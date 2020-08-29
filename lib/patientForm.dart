@@ -1,6 +1,7 @@
 /*Image*/
 import 'dart:convert';
 import 'dart:io';
+import 'package:chitra_herbals/main.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:dropdown_formfield/dropdown_formfield.dart';
@@ -147,6 +148,15 @@ class PatientFormState extends State<PatientForm> {
       appBar: AppBar(
         backgroundColor: Colors.blue,
         title: Text("Form"),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () {
+            return Navigator.pushAndRemoveUntil(context,
+                MaterialPageRoute(builder: (context) {
+              return MainPage();
+            }), (route) => false);
+          },
+        ),
       ),
       body: _isLoading
           ? Center(

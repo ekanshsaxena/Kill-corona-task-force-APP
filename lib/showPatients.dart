@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:chitra_herbals/main.dart';
 import 'package:chitra_herbals/showPatients_profile/info_holder.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -34,6 +35,15 @@ class _ShowPatientsState extends State<ShowPatients> {
       backgroundColor: Colors.blue[50],
       appBar: AppBar(
         title: Text("Patients List"),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () {
+            return Navigator.pushAndRemoveUntil(context,
+                MaterialPageRoute(builder: (context) {
+              return MainPage();
+            }), (route) => false);
+          },
+        ),
       ),
       body: FutureBuilder<List>(
           future: futuregetData,

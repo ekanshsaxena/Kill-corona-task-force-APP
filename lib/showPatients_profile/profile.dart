@@ -60,18 +60,6 @@ class CardSection extends StatelessWidget {
   CardSection({this.mp});
   @override
   Widget build(BuildContext context) {
-    // print(mp['patient']['fname']);
-    // print(mp['patient']['lname']);
-    // print(mp['patient']['gender']);
-    // print(mp['patient']['age']);
-    // print(mp['patient']['phone']);
-    // print(mp['patient']['date_positive']);
-    // print(mp['patient']['address']);
-    // print(mp['patient']['quarantine_place']);
-    // print(mp['patient']['remarks']);
-    // print(mp['patient']['given']);
-    // print(mp['patient']['quantity'].toString());
-    // print(mp['patient']['dynamiteoil']);
     return new ListView(
       shrinkWrap: true,
       padding: EdgeInsets.only(left: 10, right: 10, top: 40),
