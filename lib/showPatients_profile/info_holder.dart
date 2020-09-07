@@ -156,7 +156,9 @@ class InfoHolder extends StatelessWidget {
                                           color: Colors.pink,
                                           child: Center(
                                             child: Text(
-                                              'Positive',
+                                              list['date_negative'] == null
+                                                  ? 'Positive'
+                                                  : 'Negative',
                                               style: TextStyle(
                                                   color: Colors.white,
                                                   fontSize: 13.0),
@@ -170,21 +172,25 @@ class InfoHolder extends StatelessWidget {
                                         height: 40,
                                         width: 120,
                                         child: RaisedButton(
-                                          elevation: 10.0,
-                                          shape: new RoundedRectangleBorder(
-                                              borderRadius:
-                                                  new BorderRadius.circular(
-                                                      15.0)),
-                                          color: Colors.green,
-                                          child: Text(
-                                            'Mark Negative',
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 13.0),
-                                          ),
-                                          onPressed: () => _displayDialog(
-                                              context, "Negative"),
-                                        ),
+                                            elevation: 10.0,
+                                            shape: new RoundedRectangleBorder(
+                                                borderRadius:
+                                                    new BorderRadius.circular(
+                                                        15.0)),
+                                            color: Colors.green,
+                                            child: Text(
+                                              'Mark Negative',
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 13.0),
+                                            ),
+                                            onPressed: () {
+                                              return list['date_negative'] ==
+                                                      null
+                                                  ? _displayDialog(
+                                                      context, "Negative")
+                                                  : null;
+                                            }),
                                       ),
                                     ],
                                   ))

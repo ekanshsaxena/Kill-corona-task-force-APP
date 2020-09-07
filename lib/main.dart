@@ -1,5 +1,8 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:chitra_herbals/NoncovidForm.dart';
 import 'package:chitra_herbals/home/Home.dart';
 import 'package:chitra_herbals/patientForm.dart';
+import 'package:chitra_herbals/showNonCovid.dart';
 import 'package:chitra_herbals/showPatients.dart';
 import 'package:flutter/material.dart';
 import 'package:chitra_herbals/login.dart';
@@ -60,13 +63,14 @@ class _MainPageState extends State<MainPage> {
                       builder: (BuildContext context) => LoginPage()),
                   (Route<dynamic> route) => false);
             },
-            child: Text("Log Out", style: TextStyle(color: Colors.white)),
+            child: Text("Log Out", style: TextStyle(color: Colors.black)),
           ),
         ],
       ),
       backgroundColor: Colors.blue[50],
       drawer: Drawer(
         child: ListView(
+          padding: EdgeInsets.only(top: 0),
           shrinkWrap: true,
           children: <Widget>[
             Container(
@@ -77,11 +81,11 @@ class _MainPageState extends State<MainPage> {
                       image: ExactAssetImage("assets/images/logo.png"),
                       fit: BoxFit.fill)),
             ),
-            Padding(padding: EdgeInsets.only(top: 40)),
+            Padding(padding: EdgeInsets.only(top: 10)),
             ListTile(
               leading: Icon(Icons.assignment),
               title: Text(
-                "Add Patient",
+                "Create Covid Patient",
                 style: TextStyle(fontSize: 20),
               ),
               onTap: () {
@@ -91,14 +95,38 @@ class _MainPageState extends State<MainPage> {
               },
             ),
             ListTile(
+              leading: Icon(Icons.assignment),
+              title: Text(
+                "Create Non-Covid Patient",
+                style: TextStyle(fontSize: 20),
+              ),
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return NonCovidPatientForm();
+                }));
+              },
+            ),
+            ListTile(
               leading: Icon(Icons.group),
               title: Text(
-                "Show Patients",
+                "Show Covid Patients",
                 style: TextStyle(fontSize: 20),
               ),
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return ShowPatients();
+                }));
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.group),
+              title: Text(
+                "Show Non-Covid Patients",
+                style: TextStyle(fontSize: 20),
+              ),
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return ShowNonCovid();
                 }));
               },
             ),
@@ -119,15 +147,34 @@ class _MainPageState extends State<MainPage> {
               },
             ),
             Padding(
-              padding: EdgeInsets.only(left: 15, right: 15, top: 20),
+              padding: EdgeInsets.only(left: 15, right: 15, top: 10),
               child: Center(
-                child: Text(
-                  "Pradeep Srivastava\nGroup Commander\nTeamHead-KCTF\n8299806348",
-                  style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.black,
-                      fontWeight: FontWeight.w700),
-                ),
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      // Text(
+                      //   "Pradeep Srivastava\nGroup Commander\nTeamHead-KCTF\n8299806348",
+                      //   style: TextStyle(
+                      //       fontSize: 20,
+                      //       color: Colors.black,
+                      //       fontWeight: FontWeight.w700,
+                      //       fontStyle: FontStyle.italic
+                      //       fontFamily: Fontfam),
+                      // ),
+                      TextLiquidFill(
+                        text:
+                            'Pradeep Srivastava\nGroup Commander\nTeamHead-KCTF\n8299806348',
+                        waveColor: Colors.red,
+                        loadDuration: Duration(milliseconds: 2000),
+                        boxBackgroundColor: Colors.white,
+                        textStyle: TextStyle(
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        boxHeight: 100.0,
+                      )
+                    ]),
               ),
             )
           ],

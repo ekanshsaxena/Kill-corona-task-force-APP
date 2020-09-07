@@ -21,7 +21,7 @@ class _LoginPageState extends State<LoginPage> {
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-              colors: [Colors.blue, Colors.teal],
+              colors: [Colors.blue, Colors.teal[100]],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter),
         ),
@@ -33,6 +33,10 @@ class _LoginPageState extends State<LoginPage> {
                   textSection(),
                   buttonSection(),
                   errorLine(),
+                  Padding(
+                    padding: EdgeInsets.only(left: 20, right: 20, top: 30),
+                    child: Image.asset('assets/images/chlogo.png'),
+                  )
                 ],
               ),
       ),
@@ -54,7 +58,12 @@ class _LoginPageState extends State<LoginPage> {
     if (response.statusCode == 200) {
       jsonResponse = json.decode(response.body);
       //print(jsonResponse['token']);
-      if (jsonResponse != null && jsonResponse['status'] == true) {
+      if (jsonResponse['active'] == 0) {
+        setState(() {
+          _isLoading = false;
+          error = "Account suspended, Can't login!";
+        });
+      } else if (jsonResponse != null && jsonResponse['status'] == true) {
         setState(() {
           _isLoading = false;
         });
