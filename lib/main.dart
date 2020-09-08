@@ -51,7 +51,7 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("CHKCTF", style: TextStyle(color: Colors.white)),
+        title: Text("KCTF", style: TextStyle(color: Colors.white)),
         actions: <Widget>[
           FlatButton(
             onPressed: () {
@@ -86,7 +86,7 @@ class _MainPageState extends State<MainPage> {
               leading: Icon(Icons.assignment),
               title: Text(
                 "Create Covid Patient",
-                style: TextStyle(fontSize: 20),
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal),
               ),
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
@@ -98,7 +98,7 @@ class _MainPageState extends State<MainPage> {
               leading: Icon(Icons.assignment),
               title: Text(
                 "Create Non-Covid Patient",
-                style: TextStyle(fontSize: 20),
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal),
               ),
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
@@ -110,7 +110,7 @@ class _MainPageState extends State<MainPage> {
               leading: Icon(Icons.group),
               title: Text(
                 "Show Covid Patients",
-                style: TextStyle(fontSize: 20),
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal),
               ),
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
@@ -122,7 +122,7 @@ class _MainPageState extends State<MainPage> {
               leading: Icon(Icons.group),
               title: Text(
                 "Show Non-Covid Patients",
-                style: TextStyle(fontSize: 20),
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal),
               ),
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
@@ -134,7 +134,7 @@ class _MainPageState extends State<MainPage> {
               leading: Icon(Icons.arrow_back),
               title: Text(
                 "Log Out",
-                style: TextStyle(fontSize: 20),
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal),
               ),
               onTap: () {
                 sharedPreferences.clear();
