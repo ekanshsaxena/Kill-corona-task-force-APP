@@ -64,7 +64,7 @@ class DetailPage extends StatelessWidget {
           width: 250,
           child: Card(
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(25.0),
+              borderRadius: BorderRadius.circular(10.0),
             ),
             color: Color.fromRGBO(57, 80, 118, 1),
             child: Row(
@@ -103,7 +103,7 @@ class DetailPage extends StatelessWidget {
           width: 250,
           child: Card(
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(25.0),
+              borderRadius: BorderRadius.circular(10.0),
             ),
             color: Color.fromRGBO(45, 179, 130, 1),
             child: Row(
@@ -142,7 +142,7 @@ class DetailPage extends StatelessWidget {
           width: 250,
           child: Card(
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(25.0),
+              borderRadius: BorderRadius.circular(10.0),
             ),
             color: Color.fromRGBO(217, 37, 80, 1),
             child: Row(
